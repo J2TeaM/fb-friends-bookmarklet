@@ -44,9 +44,14 @@
 
 	function getUserId() {
 		try {
+			//need to find user's unique id. Trying each of the below until succeeds.
+			//facebook keeps changing their variables and keys
 			var currentUser = require('CurrentUserInitialData');
 			return currentUser.USER_ID || currentUser.ACCOUNT_ID || currentUser.id || require('Env').user;
 		} catch (e) {
+			// e.message: require is not defined
+			
+			// Grab user ID from cookie
 			var ck = d.cookie.match(/c_user=([0-9]+)/);
 			if (ck === null) {
 				return 0;
@@ -59,9 +64,6 @@
 
 	// Make sure the current tab is Facebook
 	if (w.top.location.hostname.indexOf('facebook.com') > -1) {
-		//need to find user's unique id. Trying each of the below until succeeds.
-		//facebook keeps changing their variables and keys
-
 		var id = getUserId();
 
 		// Check login status
