@@ -1,4 +1,4 @@
-A bookmarklet that shows the ordering on the directed edges of your facebook friends
+A bookmarklet that shows the ordering on the directed edges of your Facebook friends
 
 See thekeesh.com for more
 
