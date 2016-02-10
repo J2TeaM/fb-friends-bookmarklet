@@ -44,7 +44,8 @@
 
 	function getUserId() {
 		try {
-			return require('CurrentUserInitialData').USER_ID || require('CurrentUserInitialData').ACCOUNT_ID || require('Env').user || require('CurrentUserInitialData').id;
+			var currentUser = require('CurrentUserInitialData');
+			return currentUser.USER_ID || currentUser.ACCOUNT_ID || currentUser.id || require('Env').user;
 		} catch (e) {
 			var ck = d.cookie.match(/c_user=([0-9]+)/);
 			if (ck === null) {
