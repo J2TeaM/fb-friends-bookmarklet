@@ -21,11 +21,11 @@ function displayData(arr) {
 	thead.appendChild(row);
 	var tbody = document.createElement('tbody');
 	table.appendChild(tbody);
-	for(i=0; i < arr.length; i++){
+	for (i = 0; i < arr.length; i++) {
 		var type = arr[i].type;
 		var row = document.createElement('tr');
 		creator(row, arr[i]["text"], 'td');
-		creator(row, Object.keys(arr[i]["grammar_costs"])[0].slice(0,-1).substring(1), 'td');
+		creator(row, Object.keys(arr[i]["grammar_costs"])[0].slice(0, -1).substring(1), 'td');
 		creator(row, arr[i]["grammar_costs"][Object.keys(arr[i]["grammar_costs"])[0]], 'td');
 		tbody.appendChild(row);
 	}
@@ -39,11 +39,11 @@ function displayData(arr) {
 id = require("CurrentUserInitialData")["USER_ID"] || require("CurrentUserInitialData")["ACCOUNT_ID"] || require("Env").user || require("CurrentUserInitialData")["id"];
 url = "//www.facebook.com/ajax/typeahead/search/facebar/bootstrap/?viewer=" + id + "&__a=1";
 x = new XMLHttpRequest();
-x.onreadystatechange=function(){
-  if (x.readyState==4 && x .status==200){
-    srr=JSON.parse(x.responseText.substring(9)).payload.entries;
-    displayData(srr);
-  }
+x.onreadystatechange = function() {
+	if (x.readyState === 4 && x.status === 200) {
+		srr = JSON.parse(x.responseText.substring(9)).payload.entries;
+		displayData(srr);
+	}
 }
-x.open("GET",url,true);
+x.open("GET", url, true);
 x.send();
